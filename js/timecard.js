@@ -326,17 +326,18 @@ $(function(){
         }
     });
     $(window).on("keydown", function(e){
-        if(!onTimeCard) return;
-        switch(e.which){
-          case 16:  // Shift
-          onShift = true;
-          break;
-          case 17:  // Ctrl
-          onCtrl = true;
-          break;
-          case 46:  // Delete
-          deleteWorkRecord();
-          break;
+        if(onTimeCard){
+          switch(e.which){
+            case 16:  // Shift
+            onShift = true;
+            break;
+            case 17:  // Ctrl
+            onCtrl = true;
+            break;
+            case 46:  // Delete
+            deleteWorkRecord();
+            break;
+          }
         }
     });
     $(window).on("keyup", function(e){
@@ -543,7 +544,10 @@ $(function(){
       enterTimeCard();
       refreshView();
       e.preventDefault();
-      e.stopPropagation();
+
+      // blur for catching keyup event
+      $("#code")[0].blur();
+      $("#remark")[0].blur();
     }
 
     function onPieceMouseOver(e){
