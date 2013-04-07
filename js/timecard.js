@@ -359,6 +359,9 @@ $(function(){
     });
 
     // input form
+    $("#inputForm").on("submit", function(e){
+        return false;
+    });
     $("#write").on("click", writeWorkRecord);
     $("#delete").on("click", deleteWorkRecord);
     $("#code").typeahead({
