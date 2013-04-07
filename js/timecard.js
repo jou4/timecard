@@ -332,6 +332,7 @@ $(function(){
             onShift = true;
             break;
             case 17:  // Ctrl
+            case 91:  // Command
             onCtrl = true;
             break;
             case 46:  // Delete
@@ -346,6 +347,7 @@ $(function(){
           onShift = false;
           break;
           case 17:  // Ctrl
+          case 91:  // Command
           onCtrl = false;
           break;
         }
