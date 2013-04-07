@@ -283,6 +283,7 @@ $(function(){
     var timeCardMgr = new TimeCard();
     var slotSelector = new SlotSelector(timeCardMgr.slotsSize);
     var $pieces = [];
+    var onTimeCard = false;
     var onShift = false;
     var onCtrl = false;
     var currentDate = new Date();
@@ -316,12 +317,16 @@ $(function(){
     setUpCombo($("#phase"), phaseCodeMgr);
     setUpCombo($("#activity"), activityCodeMgr);
 
+    $timecardPanel.on("mouseenter", enterTimeCard);
+    $timecardPanel.on("mouseleave", leaveTimeCard);
+
     $(window).on("mouseup", function(){
         if(slotSelector.isSelecting()){
           slotSelector.endSelect();
         }
     });
     $(window).on("keydown", function(e){
+        if(!onTimeCard) return;
         switch(e.which){
           case 16:  // Shift
           onShift = true;
@@ -383,6 +388,13 @@ $(function(){
     // initial load
     readHistory();
     readData();
+
+    function enterTimeCard(){
+      onTimeCard = true;
+    }
+    function leaveTimeCard(){
+      onTimeCard = false;
+    }
 
     function setUpCombo($target, codeMgr){
       var list = codeMgr.getList();
@@ -528,8 +540,10 @@ $(function(){
         // set to form
         setFormData(timeCardMgr.getRecord(index));
       }
+      enterTimeCard();
       refreshView();
-      return false;
+      e.preventDefault();
+      e.stopPropagation();
     }
 
     function onPieceMouseOver(e){
@@ -538,7 +552,6 @@ $(function(){
         slotSelector.selectTo(index);
         refreshView();
       }
-      return false;
     }
 
     function setFormData(rec){
