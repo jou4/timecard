@@ -311,7 +311,7 @@ $(function(){
       }
     }
 
-    var $topPiece = $pieces[timeCardMgr.getSlotIndexFromTimeString("07:00")];
+    var $topPiece = $pieces[timeCardMgr.getSlotIndexFromTimeString("08:00")];
     $timecardPanel.scrollTop($topPiece[0].offsetTop - 10);
 
     setUpCombo($("#phase"), phaseCodeMgr);

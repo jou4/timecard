@@ -9,7 +9,8 @@
 }
 
 #timecard {
-  height: 600px;
+  /* height: 600px; */
+  height: 450px;
   overflow-y: scroll;
   position: relative;
 }
