@@ -147,7 +147,7 @@ TimeCard.prototype = {
   getSlotIndexFromTimeString: function(s){
     var tmp = s.split(":");
     if(tmp.length != 2) return -1;
-    var h = parseInt(tmp[0]), s = parseInt(tmp[1]);
+    var h = parseInt(tmp[0] * 1), s = parseInt(tmp[1]);
     if(isNaN(h) || isNaN(s)) return -1;
     if(this.hFirst > h) h += 24;
     return (h - this.hFirst) * this.sNum + Math.floor(s / this.sSpan);
