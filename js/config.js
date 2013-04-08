@@ -54,6 +54,5 @@ var ActivityMaster = [
   { key: "17", label: "保守実務" },
   { key: "18", label: "運用実務" },
   { key: "19", label: "検討・資料作成" },
-  { key: "20", label: "会議・打ち合わせ" },
-  { key: "21", label: "実務作業" }
+  { key: "20", label: "実務作業" }
 ];
