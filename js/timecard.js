@@ -519,7 +519,7 @@ $(function(){
       var tsv = new CsvGenerator("\t").process(records, function(row){
           var buf = [];
           var record = row.record.getData();
-          buf.push(getYMDString(currentDate));
+          buf.push(getYMDString(currentDate), "/");
           buf.push(timeCardMgr.getTimeStringFromSlotIndex(row.begin));
           buf.push(timeCardMgr.getTimeStringFromSlotIndex(row.end + 1));
           buf.push(record.code);
