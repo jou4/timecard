@@ -369,13 +369,14 @@ $(function(){
     $("#code").typeahead({
         source: codes
     });
-    $("#history").on("click", function(){
+    $("#history").on("change", function(){
         var val = $("#history").val();
         if(val !== ""){
           var rec = history[val];
           var slots = slotSelector.getSlots();
           timeCardMgr.setRecords(slots, rec);
           refreshView();
+          $("#history").val("");
         }
     });
 
