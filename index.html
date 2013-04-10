@@ -43,8 +43,7 @@
         <div class="span3">
           <form id="inputForm">
             <fieldset>
-              <label>履歴</label>
-              <select id="history"></select>
+              <button id="openHistory" class="btn" type="button"><i class="icon-search"></i>履歴から選択</button>
               <hr>
               <label>業務コード</label>
               <input id="code" type="text" placeholder="e.g. Z0G861" />
@@ -61,6 +60,19 @@
             </fieldset>
           </form>
         </div>
+      </div>
+    </div>
+
+    <div id="historyModal" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>履歴</h3>
+      </div>
+      <div class="modal-body">
+        <ul id="historyList"></ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>Close</button>
       </div>
     </div>
 

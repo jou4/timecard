@@ -379,6 +379,9 @@ $(function(){
           $("#history").val("");
         }
     });
+    $("#openHistory").on("click", function(e){
+        $("#historyModal").modal();
+    });
 
     // menubar
     $("#genTsv").on("click", generateWorkRecordTsv);
@@ -703,12 +706,22 @@ $(function(){
       var tp = $("#code").data("typeahead");
       tp.source = codes;
 
-      var $history = $("#history").empty();
-      $("<option></option>").appendTo($history);
-      for(var i=0,l=history.length;i<l;++i){
-        $("<option></option>").attr("value", i).text(history[i].toString()).appendTo($history);
+      var $historyList = $("#historyList").empty();
+      for(var i=0,l=history.length; i<l; ++i){
+        $historyList.append(createHistoryPiece(history[i]));
       }
+    }
 
+    function createHistoryPiece(rec){
+      var $li = $("<li></li>");
+      var $a = $("<a href='javascript:void(0);'></a>").text(rec.toString()).appendTo($li);
+      $a.on("click", function(e){
+          $("#historyModal").modal("hide");
+          var slots = slotSelector.getSlots();
+          timeCardMgr.setRecords(slots, rec);
+          refreshView();
+      });
+      return $li;
     }
 
 });
