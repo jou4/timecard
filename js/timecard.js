@@ -702,6 +702,21 @@ $(function(){
         }
       }
 
+      // TODO sort
+      history.sort(function(a, b){
+          var d1 = a.getData();
+          var d2 = b.getData();
+          var c;
+          c = cmpStringVal("code", d1, d2);
+          if(c != 0) return c;
+          c = cmpNumberVal("phase", d1, d2);
+          if(c != 0) return c;
+          c = cmpNumberVal("activity", d1, d2);
+          if(c != 0) return c;
+          c = cmpStringVal("remark", d1, d2);
+          return c;
+      });
+
       // replace source
       var tp = $("#code").data("typeahead");
       tp.source = codes;
@@ -722,6 +737,26 @@ $(function(){
           refreshView();
       });
       return $li;
+    }
+
+    function cmpStringVal(k, d1, d2){
+      var v1 = d1[k], v2 = d2[k];
+      return cmpVal(v1, v2);
+    }
+
+    function cmpNumberVal(k, d1, d2){
+      var v1 = d1[k] * 1, v2 = d2[k] * 1;
+      return cmpVal(v1, v2);
+    }
+
+    function cmpVal(v1, v2){
+      if(v1 > v2){
+        return 1;
+      }
+      else if(v1 < v2){
+        return -1;
+      }
+      return 0;
     }
 
 });
