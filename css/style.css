@@ -133,3 +133,6 @@
   margin-bottom: 0;
 }
 
+#historyList {
+  height: 360px;
+}
