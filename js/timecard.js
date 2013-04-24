@@ -366,6 +366,7 @@ $(function(){
     });
     $("#write").on("click", writeWorkRecord);
     $("#delete").on("click", deleteWorkRecord);
+    $("#reset").on("click", clearFormData);
     $("#code").typeahead({
         source: codes
     });
@@ -585,6 +586,10 @@ $(function(){
       return rec = new WorkTimeRecord(code, phase, activity, remark);
     }
 
+    function clearFormData(){
+      setFormData(new WorkTimeRecord("", "", "", ""));
+    }
+
     function getYMDString(dt, sep){
       sep = sep || "";
       var y = dt.getYear();
@@ -702,7 +707,7 @@ $(function(){
         }
       }
 
-      // TODO sort
+      // sort
       history.sort(function(a, b){
           var d1 = a.getData();
           var d2 = b.getData();
@@ -734,6 +739,8 @@ $(function(){
           $("#historyModal").modal("hide");
           var slots = slotSelector.getSlots();
           timeCardMgr.setRecords(slots, rec);
+          // update input form
+          setFormData(rec);
           refreshView();
       });
       return $li;
