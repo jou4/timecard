@@ -670,7 +670,7 @@ $(function(){
     function readHistory(){
       var dt = new Date();
       var nowTime = dt.getTime();
-      var limit = 14;
+      var limit = 30;
       var secPerDay = 24*60*60*1000;
 
       var bufCode = {};
