@@ -687,9 +687,9 @@ $(function(){
             var record = row.record;
             history.push({
                 date: getYMDString(dt),
-                begin: data.begin,
-                end: data.end,
-                code: record.getdata().code,
+                begin: row.begin,
+                end: row.end,
+                code: record.getData().code,
                 text: record.getData().phase,
                 activity: record.getData().activity,
                 remark: record.getData().remark
