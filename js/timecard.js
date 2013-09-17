@@ -388,6 +388,7 @@ $(function(){
     $("#genTsv").on("click", generateWorkRecordTsv);
     $("#save").on("click", saveData);
     $("#clear").on("click", removeData);
+    $("#historyAll").on("click", readHistoryAll);
 
     $("#date").datepicker().datepicker("setValue", currentDate);
     $("#date").on("changeDate", function(e){
@@ -665,6 +666,45 @@ $(function(){
         refreshView();
         readHistory();
       }
+    }
+
+    function readHistoryAll(){
+      var dt = new Date();
+      var nowTime = dt.getTime();
+      var limit = 366;
+      var secPerDay = 24*60*60*1000;
+
+      var history = [];
+
+      for(var i=0;i<limit;++i){
+        dt.setTime(nowTime - secPerDay * i);
+        var key = getSaveDataKey(dt);
+        var s = localStorage.getItem(key);
+        if(s){
+          var data = deserialize(s);
+          for(var i2=0,l2=data.length;i2<l2;++i2){
+            var row = data[i2];
+            var record = row.record;
+            history.push({
+                date: getYMDString(dt),
+                begin: data.begin,
+                end: data.end,
+                code: record.getdata().code,
+                text: record.getData().phase,
+                activity: record.getData().activity,
+                remark: record.getData().remark
+            });
+          }
+        }
+      }
+
+      var str = "";
+      for(var i=0,l=history.length;i<l;++i){
+        var row = history[i];
+        str += row.date+"\t"+row.begin+"\t"+row.end+"\t"+row.code+"\t"+row.remark+"\n";
+      }
+      console.log(str);
+
     }
 
     function readHistory(){
